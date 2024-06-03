@@ -3,8 +3,6 @@ import {generateObject} from 'ai';
 import { createOpenAI } from '@ai-sdk/openai';
 import {z} from 'zod';
 
-export const runtime = 'edge';
-
 const openai = createOpenAI({
     apiKey: process.env.OPENAI_API_KEY
 })
