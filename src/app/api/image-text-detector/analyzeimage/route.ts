@@ -1,4 +1,4 @@
-import {NextRequest} from "next/server";
+import {NextRequest, NextResponse} from "next/server";
 import {generateObject} from 'ai';
 import { createOpenAI } from '@ai-sdk/openai';
 import {z} from 'zod';
@@ -56,7 +56,7 @@ export async function POST(req: NextRequest) {
 
     console.log(object);
 
-    return object;
+    return NextResponse.json(object);
 
     // const stream = OpenAIStream(response);
 }
