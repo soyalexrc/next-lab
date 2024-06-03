@@ -19,7 +19,7 @@ export async function POST(req: NextRequest) {
         maxTokens: 4096,
         schema: z.object({
             price: z.string(),
-            date: z.date(),
+            date: z.string(),
             time: z.string(),
             clinic: z.string(),
             address: z.string(),
@@ -55,6 +55,7 @@ export async function POST(req: NextRequest) {
     });
 
     console.log(object);
+    console.log(typeof object);
 
     return NextResponse.json(object);
 

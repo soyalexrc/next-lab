@@ -17,7 +17,7 @@ export default function ImageCapturer() {
 
         formData.append('image', file)
 
-        const fileBase64 = await toBase64(file)
+        const fileBase64: any = await toBase64(file)
 
         const response = await fetch('/api/image-text-detector/analyzeimage', {
             method: 'POST',
@@ -25,11 +25,13 @@ export default function ImageCapturer() {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-                image: fileBase64
+                image: fileBase64.split(',')[1]
             })
         });
 
-        setResult(response);
+        const json = await response.json();
+        console.log(json);
+        setResult(json);
     }
 
         const toBase64 = (file: File) => {
