@@ -1,6 +1,7 @@
 'use client';
 import {useEffect, useState} from "react";
 import Image from "next/image";
+import {Button} from "@/components/ui/button";
 // import Tesseract from "tesseract.js";
 
 export default function ImageCapturer() {
@@ -17,18 +18,19 @@ export default function ImageCapturer() {
     const takePicture = async (event: React.ChangeEvent<HTMLInputElement>) => {
         setLoading(true);
         const file = event.target.files![0];
-        const fileUrl = URL.createObjectURL(file);
-        const formData = new FormData();
+        // const fileUrl = URL.createObjectURL(file);
+        // const formData = new FormData();
 
 
 
-        formData.append('image', file)
+        // formData.append('image', file)
 
         const fileBase64: any = await toBase64(file)
+        alert(fileBase64)
 
         setDebug({
             files: event.target.files,
-            imageBase64: fileBase64
+            imageBase64: fileBase64.split(',')[1]
         });
 
         await fetch('/api/image-text-detector/analyzeimage', {
@@ -84,7 +86,7 @@ export default function ImageCapturer() {
     return(
         <div>
             <input id='pictureInput' type="file" accept="image/*"  className='hidden' onChange={takePicture}/>
-            <button onClick={triggerInput}>take picture</button>
+            <Button  onClick={triggerInput}>take picture</Button>
 
             <pre>{JSON.stringify(debug, null, 2)}</pre>
 
