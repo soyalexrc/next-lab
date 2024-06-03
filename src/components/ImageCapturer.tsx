@@ -83,7 +83,7 @@ export default function ImageCapturer() {
 
     return(
         <div>
-            <input id='pictureInput' type="file" accept="image/*" capture="environment" className='hidden' onChange={takePicture}/>
+            <input id='pictureInput' type="file" accept="image/*"  className='hidden' onChange={takePicture}/>
             <button onClick={triggerInput}>take picture</button>
 
             <pre>{JSON.stringify(debug, null, 2)}</pre>
